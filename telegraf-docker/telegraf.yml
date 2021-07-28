@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+ telegraf:
+  image: telegraf:latest
+  container_name: telegraf
+  restart: always
+  volumes:
+    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro

@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Create/Update the flask app container if needed
+    docker_container:
+     name: httpd
+     image: httpd
+     pull: true
+     ports:
+       - "5001:5001"
+     state: started

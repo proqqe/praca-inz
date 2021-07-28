@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: create directory for docker
+    file:
+      path: /opt/ansible/compose
+      state: directory
+  - name: copy telegraf.conf file from source to the destinaton
+    copy: src=/Users/piotr/projects/praca-inz/telegraf.conf dest=/opt/ansible/compose/telegraf.conf         
+  - name: copy docker-compose.yml file from source to the destinaton
+    copy: src=/Users/piotr/projects/praca-inz/telegraf.yml dest=/opt/ansible/compose/docker-compose.yml 
+  - name: Run telegraf container
+    shell:
+      cmd: "docker-compose up --force-recreate -d"
+      chdir: /opt/ansible/compose
