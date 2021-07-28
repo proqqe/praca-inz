@@ -1,11 +1,7 @@
 ---
 - hosts: all
   become: true
-  tasks:
-  - name: create directory for docker
-    file:
-      path: /opt/monitoring/grafana
-      state: directory
+  tasks:    
   - name: create directory volume for grafana
     file:
       path: /opt/monitoring/grafana/vol
@@ -18,6 +14,10 @@
     copy: src=/Users/piotr/projects/praca-inz/monitoring/telegraf.conf dest=/opt/monitoring/grafana/telegraf.conf 
   - name: copy env.influxdb file from source to the destinaton
     copy: src=/Users/piotr/projects/praca-inz/monitoring/env.influxdb dest=/opt/monitoring/grafana/env.influxdb        
+  - name: copy grafana provisioning directory
+    copy: 
+      src=/Users/piotr/projects/praca-inz/monitoring/provisioning/
+      dest=/opt/monitoring/grafana/provisioning/
   - name: copy docker-compose.yml file from source to the destinaton
     copy: src=/Users/piotr/projects/praca-inz/monitoring/docker-compose.yml dest=/opt/monitoring/grafana/docker-compose.yml 
   - name: Docker-compose up

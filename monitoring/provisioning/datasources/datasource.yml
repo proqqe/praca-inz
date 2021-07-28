@@ -1,0 +1,19 @@
+# config file version
+apiVersion: 1
+
+# list of datasources that should be deleted from the database
+#deleteDatasources:
+  #- name: InfluxDB
+  #  orgId: 1
+
+# list of datasources to insert/update depending
+# whats available in the database
+datasources:
+  - name: test    
+    type: influxdb
+    access: proxy
+    database: telegraf
+    user: telegraf1
+    url: http://192.168.144.141:8086
+    secureJsonData:
+      password: password
