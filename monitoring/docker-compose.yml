@@ -13,8 +13,6 @@ services:
     - INFLUXDB_ADMIN_USER=admin
     - INFLUXDB_ADMIN_PASSWORD=admin
   volumes:
-    # Data persistency
-    # sudo mkdir -p /srv/docker/influxdb/data
     - ./influxdb/data:/var/lib/influxdb
 
  telegraf:
@@ -36,5 +34,4 @@ services:
     - 3000:3000
    restart: always
    volumes:
-#    - /opt/zabbix/grafana/provisioning/:/etc/grafana/provisioning/
     - ./vol/grafana:/var/lib/grafana
