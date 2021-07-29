@@ -20,6 +20,8 @@
       dest=/opt/monitoring/grafana/provisioning/
   - name: copy docker-compose.yml file from source to the destinaton
     copy: src=/Users/piotr/projects/praca-inz/monitoring/docker-compose.yml dest=/opt/monitoring/grafana/docker-compose.yml 
+  - name: create volume portainer_data
+    command: docker volume create --name portainer_data
   - name: Docker-compose up
     shell:
       cmd: "docker-compose up --force-recreate -d"
