@@ -4,7 +4,7 @@
   tasks:    
   - name: create directory volume for grafana
     file:
-      path: /opt/monitoring/grafana/vol
+      path: /opt/monitoring/grafana/vol/
       state: directory
   - name: create directory volume for influxdb
     file:
@@ -23,4 +23,12 @@
   - name: Docker-compose up
     shell:
       cmd: "docker-compose up --force-recreate -d"
+      chdir: /opt/monitoring/grafana
+  - name: Change permissions on grafana volume
+    shell:
+      cmd: "chown -R 472.472 ./vol"
+      chdir: /opt/monitoring/grafana
+  - name: Restart Grafana container
+    shell:
+      cmd: "docker-compose up --force-recreate -d grafana"
       chdir: /opt/monitoring/grafana
